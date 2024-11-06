@@ -1,0 +1,44 @@
+name: Deploy
+
+permissions:
+    contents: write
+
+on:
+    push:
+        branches: [main]
+
+env:
+    BASE_PATH: /adm-emulator
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+
+            - name: Use Node.js 18.x
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 18.x
+
+            - uses: pnpm/action-setup@v2
+              with:
+                  version: 8
+                  run_install: true
+
+            - run: pnpm recursive run build
+
+            - run: npx next export
+              working-directory: ./packages/adm-emulator
+
+            - run: touch packages/adm-emulator/out/.nojekyll
+
+            - name: Deploy
+              uses: s0/git-publish-subdir-action@develop
+              env:
+                  REPO: self
+                  BRANCH: gh-pages
+                  FOLDER: packages/adm-emulator/out
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

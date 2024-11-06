@@ -1,0 +1,33 @@
+{
+    "name": "client",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite --port 5002",
+        "build": "vite build",
+        "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "axios": "^1.7.7",
+        "bootstrap": "^5.3.3",
+        "react": "^18.3.1",
+        "react-bootstrap": "^2.10.5",
+        "react-dom": "^18.3.1",
+        "react-router-dom": "^6.27.0",
+        "react-scripts": "^5.0.1",
+        "react-syntax-highlighter": "^15.6.1",
+        "config": "workspace:*"
+    },
+    "devDependencies": {
+        "@types/react": "^18.3.12",
+        "@types/react-dom": "^18.3.1",
+        "@vitejs/plugin-react": "^4.3.3",
+        "eslint": "^8.57.1",
+        "eslint-plugin-react": "^7.37.2",
+        "eslint-plugin-react-hooks": "^4.6.2",
+        "eslint-plugin-react-refresh": "^0.4.14",
+        "vite": "^5.4.10"
+    }
+}

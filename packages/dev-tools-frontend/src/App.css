@@ -1,0 +1,69 @@
+/* src/App.css */
+html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .main-content {
+    display: flex;
+    flex: 1;
+    margin-top: 56px; /* Adjust for the height of the fixed navbar */
+  }
+  
+  .sidebar {
+    width: 200px;
+    background-color: #343a40; /* Dark background for sidebar */
+    color: #fff; /* White text */
+    padding: 15px;
+    height: 100%;
+    position: fixed; /* Make the sidebar fixed */
+    top: 56px; /* Adjust for the height of the navbar */
+    overflow-y: auto; /* Ensure scrollbar if content overflows */
+  }
+  
+  .sidebar .nav-link {
+    color: #fff; /* White text for links */
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .sidebar .nav-link:hover {
+    background-color: #495057; /* Slightly lighter background on hover */
+  }
+  
+  .sidebar .nav-link.active {
+    background-color: #007bff; /* Blue background for active link */
+  }
+  
+  .content {
+    margin-left: 200px; /* Add a margin to the content to avoid overlap */
+    flex: 1;
+    padding: 20px;
+    background-color: #f8f9fa; /* Light background for content area */
+    overflow-y: auto; /* Ensure the content is scrollable if it overflows */
+  }
+  
+  .navbar {
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+  }
+  
+  .navbar-dark .navbar-brand {
+    color: #fff;
+  }
+  
+  .navbar-dark .nav-link {
+    color: #fff;
+  }
+  

@@ -1,0 +1,11 @@
+{
+    "name": "config",
+    "version": "1.0.0",
+    "main": "src/config.ts",
+    "scripts": {
+        "build": "npx tsc"
+    },
+    "devDependencies": {
+        "@types/node": "^20.17.6"
+    }
+}

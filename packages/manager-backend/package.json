@@ -1,0 +1,32 @@
+{
+    "name": "backend",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "npx tsc",
+        "dev": "npx tsc && node dist/server.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "dependencies": {
+        "@devicefarmer/adbkit": "^3.3.6",
+        "@yume-chan/adb": "^0.0.24",
+        "@yume-chan/adb-server-node-tcp": "^0.0.24",
+        "adbkit": "^2.11.1",
+        "cors": "^2.8.5",
+        "express": "^4.21.1",
+        "optimist": "^0.6.1",
+        "ws": "^8.18.0",
+        "config": "workspace:*"
+    },
+    "devDependencies": {
+        "@types/cors": "^2.8.17",
+        "@types/express": "^5.0.0",
+        "@types/mime-types": "^2.1.4",
+        "@types/optimist": "^0.0.33",
+        "@types/ws": "^8.5.13"
+    }
+}
