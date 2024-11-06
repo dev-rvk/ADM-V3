@@ -1,14 +1,23 @@
 # ADM Emulator
 
+Structured Workspace for Android Device Manager, Decompilers and other Reverse Engineering tools.
+
 This project is based on [tango-adb/old-demo](https://github.com/tango-adb/old-demo) which gives API Reference for using [tango](https://github.com/yume-chan/ya-webadb). It uses a subset of features provided by the library to manage and connect to emulators using WebSockets.
+
+## Submodules
+
+- adm: tango-adb old-demo client (with Frida Support `WIP`)
+- dev-tools: decompilers, shellcode repository
+- manager: webapp to manage multiple devices connected to the server
+- other packages required for adm
 
 ## Setup
 
 1. Clone the repo
 
 ```sh
-git clone https://github.com/dev-rvk/adm-emulator
-cd adm-emulator
+git clone https://github.com/dev-rvk/ADM-V3
+cd ADM-V3
 ```
 
 2. Install dependancies
@@ -39,13 +48,25 @@ However, since it doesn't have any server-side code, the most simple deployment 
 To export static deployable HTML files, after running `rush build` command, run:
 
 ```sh
-cd packages/adm-emulator
+cd packages/adm
 npx next export
 ```
 
 This will create an `out` folder containing exported HTML files and all required resource files.
 
 ## Features
+
+- Device Management: Supports multiple devices connected via adb over wifi to the server, and their access through the tango-adb old-demo app
+  
+- Static Analysis
+  - Ghidra, Angr Decompilers
+  - JadX apk Decompiler
+
+- Dynamic Analysis
+  - Run scripts using Frida (`WIP`)
+
+- Shell Code Repository
+- Compile & Deploy shell codes (`WIP`)
 
 - File Management
   - List
