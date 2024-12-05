@@ -22,11 +22,11 @@ import AdbDaemonWebSocketDevice from "@yume-chan/adb-daemon-ws";
 registerIcons();
 
 const ROUTES = [
-    // {
-    //     url: "/",
-    //     icon: Icons.Bookmark,
-    //     name: "README",
-    // },
+    {
+        url: "/",
+        icon: Icons.Bookmark,
+        name: "README",
+    },
     {
         url: "/dev-mode",
         icon: Icons.PhoneLaptop,
@@ -52,11 +52,11 @@ const ROUTES = [
         icon: Icons.Camera,
         name: "Screen Capture",
     },
-    // {
-    //     url: "/tcpip",
-    //     icon: Icons.WifiSettings,
-    //     name: "ADB over WiFi",
-    // },
+    {
+        url: "/tcpip",
+        icon: Icons.WifiSettings,
+        name: "ADB over WiFi",
+    },
     {
         url: "/install",
         icon: Icons.Box,

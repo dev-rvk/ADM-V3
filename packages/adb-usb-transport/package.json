@@ -1,0 +1,29 @@
+{
+  "name": "adb-usb-transport",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^20.17.6",
+    "@yume-chan/adb": "^0.0.24",
+    "@yume-chan/async": "^2.2.0",
+    "@yume-chan/stream-extra": "^0.0.21",
+    "@yume-chan/struct": "^0.0.21"
+  },
+  "devDependencies": {
+    "@yume-chan/eslint-config": "workspace:^",
+    "@yume-chan/tsconfig": "workspace:^",
+    "eslint": "^8.57.1",
+    "jest": "^29.7.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.3"
+  }
+}

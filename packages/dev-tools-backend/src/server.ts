@@ -1,17 +1,17 @@
 import express from "express";
-import { getRootPath } from "./utils/getRootPath";
-import { execCommand } from "./utils/execCommand";
-import { readNestedDir } from "./utils/readNestedDir";
+import getRootPath from "./utils/getRootPath.js";
+import execCommand from "./utils/execCommand.js";
+import readNestedDir from "./utils/readNestedDir.js";
 import multer from "multer";
 import path from "path";
 import fs from "fs";
 import cors from "cors";
 
-const { DEV_TOOLS_BACKEND_PORT } = require("config");
+import { config } from "config";
 
 const app = express();
 app.use(cors());
-const PORT = DEV_TOOLS_BACKEND_PORT;
+const PORT = config.DEV_TOOLS_BACKEND_PORT;
 
 function getMulterUpload(destination: string) {
     const storage = multer.diskStorage({

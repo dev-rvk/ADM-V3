@@ -186,8 +186,9 @@ const Icons = {
     WifiSettings: "WifiSettings",
     WindowConsole: "WindowConsole",
     WindowDevTools: "WindowDevTools",
-
     Document20: "Document20",
+
+
 };
 
 export default Icons;

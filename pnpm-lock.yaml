@@ -70,7 +70,44 @@ importers:
         specifier: ^5.6.3
         version: 5.6.3
 
-  packages/adm-emulator:
+  packages/adb-usb-transport:
+    dependencies:
+      '@types/node':
+        specifier: ^20.17.6
+        version: 20.17.6
+      '@yume-chan/adb':
+        specifier: ^0.0.24
+        version: 0.0.24
+      '@yume-chan/async':
+        specifier: ^2.2.0
+        version: 2.2.0
+      '@yume-chan/stream-extra':
+        specifier: ^0.0.21
+        version: 0.0.21
+      '@yume-chan/struct':
+        specifier: ^0.0.21
+        version: 0.0.21
+    devDependencies:
+      '@yume-chan/eslint-config':
+        specifier: workspace:^
+        version: link:../tslint-config
+      '@yume-chan/tsconfig':
+        specifier: workspace:^
+        version: link:../tsconfig
+      eslint:
+        specifier: ^8.57.1
+        version: 8.57.1
+      jest:
+        specifier: ^29.7.0
+        version: 29.7.0(@types/node@20.17.6)(babel-plugin-macros@3.1.0)
+      prettier:
+        specifier: ^3.3.3
+        version: 3.3.3
+      typescript:
+        specifier: ^5.6.3
+        version: 5.6.3
+
+  packages/adm:
     dependencies:
       '@fluentui/react':
         specifier: ^8.121.8
@@ -153,6 +190,9 @@ importers:
       '@yume-chan/undici-browser':
         specifier: 5.22.1-mod.7
         version: 5.22.1-mod.7
+      adb-usb-transport:
+        specifier: workspace:^
+        version: link:../adb-usb-transport
       comlink:
         specifier: ^4.4.1
         version: 4.4.1
@@ -177,6 +217,9 @@ importers:
       webm-muxer:
         specifier: ^3.2.1
         version: 3.2.1
+      ws:
+        specifier: ^8.18.0
+        version: 8.18.0
     devDependencies:
       '@mdx-js/loader':
         specifier: ^2.3.0
@@ -199,6 +242,9 @@ importers:
       '@types/react':
         specifier: 18.2.21
         version: 18.2.21
+      '@types/ws':
+        specifier: ^8.5.13
+        version: 8.5.13
       '@yume-chan/next-pwa':
         specifier: 5.6.0-mod.2
         version: 5.6.0-mod.2(@babel/core@7.26.0)(@types/babel__core@7.20.5)(next@13.4.19(@babel/core@7.26.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.6))(webpack@5.96.1)
@@ -214,11 +260,18 @@ importers:
       source-map-loader:
         specifier: ^4.0.2
         version: 4.0.2(webpack@5.96.1)
+      ts-loader:
+        specifier: ^9.5.1
+        version: 9.5.1(typescript@5.6.3)(webpack@5.96.1)
       typescript:
         specifier: ^5.6.3
         version: 5.6.3
 
   packages/config:
+    dependencies:
+      typescript:
+        specifier: ^5.6.3
+        version: 5.6.3
     devDependencies:
       '@types/node':
         specifier: ^20.17.6
@@ -262,6 +315,9 @@ importers:
       config:
         specifier: workspace:*
         version: link:../config
+      prismjs:
+        specifier: ^1.29.0
+        version: 1.29.0
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -352,6 +408,55 @@ importers:
         specifier: ^8.5.13
         version: 8.5.13
 
+  packages/manager-backend-tango:
+    dependencies:
+      '@yume-chan/adb':
+        specifier: ^0.0.24
+        version: 0.0.24
+      '@yume-chan/adb-credential-web':
+        specifier: ^0.0.24
+        version: 0.0.24
+      '@yume-chan/adb-server-node-tcp':
+        specifier: ^0.0.24
+        version: 0.0.24
+      '@yume-chan/stream-extra':
+        specifier: ^0.0.21
+        version: 0.0.21
+      config:
+        specifier: workspace:*
+        version: link:../config
+      cors:
+        specifier: ^2.8.5
+        version: 2.8.5
+      express:
+        specifier: ^4.21.1
+        version: 4.21.1
+      mime-types:
+        specifier: ^2.1.35
+        version: 2.1.35
+      typescript:
+        specifier: ^5.6.3
+        version: 5.6.3
+      websockify:
+        specifier: ^0.7.1
+        version: 0.7.1
+      ws:
+        specifier: ^8.18.0
+        version: 8.18.0
+    devDependencies:
+      '@types/cors':
+        specifier: ^2.8.17
+        version: 2.8.17
+      '@types/express':
+        specifier: ^5.0.0
+        version: 5.0.0
+      '@types/mime-types':
+        specifier: ^2.1.4
+        version: 2.1.4
+      '@types/ws':
+        specifier: ^8.5.13
+        version: 8.5.13
+
   packages/manager-frontend:
     dependencies:
       '@radix-ui/react-icons':
@@ -375,6 +480,9 @@ importers:
       next:
         specifier: 14.2.16
         version: 14.2.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.80.6)
+      prismjs:
+        specifier: ^1.29.0
+        version: 1.29.0
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -3107,6 +3215,9 @@ packages:
 
   '@yume-chan/adb-credential-web@0.0.21':
     resolution: {integrity: sha512-7TjwmjjW3+/GJUCzprulcTplcM5gyP6/IjN6apGCVr50Oe05o833zl086M1uoVb2zYKdh+C2n3VNl3U7L6i55A==}
+
+  '@yume-chan/adb-credential-web@0.0.24':
+    resolution: {integrity: sha512-pKCGa9bQWP8ev+xbzo94/+z5jCQw0aQqNIfg5pQQYupj3WtO0LYb098PuSn3QJ8qw+Z8xxEfgwj11NhxAuCBeQ==}
 
   '@yume-chan/adb-daemon-webusb@0.0.21':
     resolution: {integrity: sha512-mr/PSMqDA/CdfMdmGaGWi/G+erhEkLX2k9Gk81P518lAdgI6T11itRisd6xiYiiMz/OOlDlqbsTOy0TcNuyVkw==}
@@ -6722,6 +6833,9 @@ packages:
     resolution: {integrity: sha512-nDywThFk1i4BQK4twPQ6TA4RT8bDY96yeuCVBWL3ePARCiEKDRSrNGbFIgUJpLp+XeIR65v8ra7WuJOFUBtkMA==}
     engines: {node: '>=8'}
 
+  policyfile@0.0.6:
+    resolution: {integrity: sha512-1/I52idR1lB9GdPVRLJp9waxsdsliTgf/oNNvzTF86GQd+zR2r+fbAdZjwiGBiCzLiBrwUdtn2Xx9sGQEB/9DA==}
+
   possible-typed-array-names@1.0.0:
     resolution: {integrity: sha512-d7Uw+eZoloe0EHDIYoe+bQ5WXnGMOpmiZFTuMWCwpjzzkL2nTjcKiAk4hh8TjnGye2TwWOk3UXucZ+3rbmBa8Q==}
     engines: {node: '>= 0.4'}
@@ -8651,6 +8765,11 @@ packages:
   websocket-extensions@0.1.4:
     resolution: {integrity: sha512-OqedPIGOfsDlo31UNwYbCFMSaO9m9G/0faIHj5/dZFDMFqPTcx6UwqyOy3COEaEOg/9VsGIpdqn62W5KhoKSpg==}
     engines: {node: '>=0.8.0'}
+
+  websockify@0.7.1:
+    resolution: {integrity: sha512-VTcg+ykavK8l7gvMYUv5TvplYzLMW+vE0pd7/y/5idZ40iKrMxyTevjaIS7mME8XpZjzC0G2nE8vW1FUhfdOUw==}
+    engines: {node: '>=0.8.9'}
+    hasBin: true
 
   whatwg-encoding@1.0.5:
     resolution: {integrity: sha512-b5lim54JOPN9HtzvK9HFXvBma/rnfFeqsic0hSpjtDbVxR3dJKLc+KB4V6GgiGOvl7CY/KNh8rxSo9DKQrnUEw==}
@@ -11784,6 +11903,10 @@ snapshots:
     dependencies:
       '@yume-chan/adb': 0.0.21
       tslib: 2.8.1
+
+  '@yume-chan/adb-credential-web@0.0.24':
+    dependencies:
+      '@yume-chan/adb': 0.0.24
 
   '@yume-chan/adb-daemon-webusb@0.0.21':
     dependencies:
@@ -16593,6 +16716,8 @@ snapshots:
     dependencies:
       find-up: 3.0.0
 
+  policyfile@0.0.6: {}
+
   possible-typed-array-names@1.0.0: {}
 
   postcss-attribute-case-insensitive@5.0.2(postcss@8.4.47):
@@ -18363,6 +18488,16 @@ snapshots:
       typescript: 5.6.3
       webpack: 5.96.1(webpack-cli@5.1.4)
 
+  ts-loader@9.5.1(typescript@5.6.3)(webpack@5.96.1):
+    dependencies:
+      chalk: 4.1.2
+      enhanced-resolve: 5.17.1
+      micromatch: 4.0.8
+      semver: 7.6.3
+      source-map: 0.7.4
+      typescript: 5.6.3
+      webpack: 5.96.1
+
   tsconfig-paths@3.15.0:
     dependencies:
       '@types/json5': 0.0.29
@@ -18870,6 +19005,15 @@ snapshots:
       websocket-extensions: 0.1.4
 
   websocket-extensions@0.1.4: {}
+
+  websockify@0.7.1:
+    dependencies:
+      optimist: 0.6.1
+      policyfile: 0.0.6
+      ws: 8.18.0
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
 
   whatwg-encoding@1.0.5:
     dependencies:

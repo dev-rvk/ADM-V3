@@ -23,7 +23,7 @@ string[]
 import fs from 'fs';
 import path from 'path';
 
-export function readNestedDir(dir: string, baseDir: string): string[] {
+export default function readNestedDir(dir: string, baseDir: string): string[] {
     const files: string[] = [];
 
     const readDirRecursive = (currentDir: string) => {

@@ -1,7 +1,4 @@
-"use strict";
 // utils/execCommand.ts
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.execCommand = execCommand;
 /*
 This function executes any given command in the terminal and returns a promise that resolves
 with the result of the command execution.
@@ -16,11 +13,11 @@ Returns:
   - message: string - A message describing the result.
   - output: string - The standard output or error of the executed command.
 */
-const child_process_1 = require("child_process");
-function execCommand(command) {
+import { exec } from 'child_process';
+export default function execCommand(command) {
     return new Promise((resolve, reject) => {
         console.log(`Executing command: ${command}`);
-        (0, child_process_1.exec)(command, (error, stdout, stderr) => {
+        exec(command, (error, stdout, stderr) => {
             if (error) {
                 console.error(`Error executing command: ${error.message}`);
                 return resolve({

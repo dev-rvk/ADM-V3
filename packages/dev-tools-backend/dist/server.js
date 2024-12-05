@@ -1,31 +1,17 @@
-"use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const getRootPath_1 = require("./utils/getRootPath");
-const execCommand_1 = require("./utils/execCommand");
-const readNestedDir_1 = require("./utils/readNestedDir");
-const multer_1 = __importDefault(require("multer"));
-const path_1 = __importDefault(require("path"));
-const fs_1 = __importDefault(require("fs"));
-const cors_1 = __importDefault(require("cors"));
-const { DEV_TOOLS_BACKEND_PORT } = require("config");
-const app = (0, express_1.default)();
-app.use((0, cors_1.default)());
-const PORT = DEV_TOOLS_BACKEND_PORT;
+import express from "express";
+import getRootPath from "./utils/getRootPath.js";
+import execCommand from "./utils/execCommand.js";
+import readNestedDir from "./utils/readNestedDir.js";
+import multer from "multer";
+import path from "path";
+import fs from "fs";
+import cors from "cors";
+import { config } from "config";
+const app = express();
+app.use(cors());
+const PORT = config.DEV_TOOLS_BACKEND_PORT;
 function getMulterUpload(destination) {
-    const storage = multer_1.default.diskStorage({
+    const storage = multer.diskStorage({
         destination: (req, file, cb) => {
             cb(null, destination);
         },
@@ -33,16 +19,16 @@ function getMulterUpload(destination) {
             cb(null, file.originalname);
         },
     });
-    return (0, multer_1.default)({ storage });
+    return multer({ storage });
 }
 app.get("/", (req, res) => {
     res.json({ version: "0.0.1" });
 });
-app.post("/decompile_jadx", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const uploadsPath = (0, getRootPath_1.getRootPath)("workers/jadx_decompile/uploads");
-    const outputPath = (0, getRootPath_1.getRootPath)("workers/jadx_decompile/output");
+app.post("/decompile_jadx", async (req, res) => {
+    const uploadsPath = getRootPath("workers/jadx_decompile/uploads");
+    const outputPath = getRootPath("workers/jadx_decompile/output");
     const upload = getMulterUpload(uploadsPath).single("apkfile");
-    upload(req, res, (err) => __awaiter(void 0, void 0, void 0, function* () {
+    upload(req, res, async (err) => {
         if (err) {
             return res.status(500).send(`File upload failed Error ${err}`);
         }
@@ -52,19 +38,19 @@ app.post("/decompile_jadx", (req, res) => __awaiter(void 0, void 0, void 0, func
         }
         // Execute the commands to decompile APK
         const command = `docker run -v ${uploadsPath}:/app/uploads -v ${outputPath}:/app/output jadx-decompile ${apkFile.filename}`;
-        const result = yield (0, execCommand_1.execCommand)(command);
+        const result = await execCommand(command);
         if (!result.success) {
             return res.status(500).send(result.message);
         }
         const apkName = apkFile.filename.replace(".apk", "");
-        const decompDir = path_1.default.join(outputPath, apkName);
+        const decompDir = path.join(outputPath, apkName);
         // Read the output directory to get the list of generated files
-        const files = (0, readNestedDir_1.readNestedDir)(decompDir, outputPath);
+        const files = readNestedDir(decompDir, outputPath);
         // Generate URLs for the generated files
         const fileUrls = files
             .filter((file) => file !== ".gitkeep" && !/^\..*$/.test(file))
             .map((file) => ({
-            filename: path_1.default.basename(file),
+            filename: path.basename(file),
             path: file,
             url: `http://localhost:${PORT}/static/apk/${file}`,
         }));
@@ -83,9 +69,9 @@ app.post("/decompile_jadx", (req, res) => __awaiter(void 0, void 0, void 0, func
         //     }
         //   ]
         // }
-    }));
-}));
-app.post("/decompile_so", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    });
+});
+app.post("/decompile_so", async (req, res) => {
     /*
   Accepted Response:
   {
@@ -93,10 +79,10 @@ app.post("/decompile_so", (req, res) => __awaiter(void 0, void 0, void 0, functi
     'selections': ['angr', 'ghidra'] or ['angr']
   }
    */
-    const uploadsPath = (0, getRootPath_1.getRootPath)("workers/so_decompiler/uploads");
-    const outputPath = (0, getRootPath_1.getRootPath)("workers/so_decompiler/output");
+    const uploadsPath = getRootPath("workers/so_decompiler/uploads");
+    const outputPath = getRootPath("workers/so_decompiler/output");
     const upload = getMulterUpload(uploadsPath).single("sofile");
-    upload(req, res, (err) => __awaiter(void 0, void 0, void 0, function* () {
+    upload(req, res, async (err) => {
         if (err) {
             console.error("Multer error:", err);
             return res
@@ -123,13 +109,13 @@ app.post("/decompile_so", (req, res) => __awaiter(void 0, void 0, void 0, functi
         }
         // Execute the commands to decompile SO file
         const command = `docker run -v ${uploadsPath}:/decompile/uploads -v ${outputPath}:/decompile/output devrvk/so-decompiler ${argument} /decompile/uploads/${soFile.filename} /decompile/output`;
-        const result = yield (0, execCommand_1.execCommand)(command);
+        const result = await execCommand(command);
         // if the command failed, return the error message
         if (!result.success) {
             return res.status(500).send(result.message);
         }
         // Read the output directory to get the list of generated files
-        const files = fs_1.default.readdirSync(outputPath);
+        const files = fs.readdirSync(outputPath);
         // Generate URLs for the generated files
         const fileUrls = files
             .filter((file) => file !== ".gitkeep" && !/^\..*$/.test(file))
@@ -155,11 +141,11 @@ app.post("/decompile_so", (req, res) => __awaiter(void 0, void 0, void 0, functi
         //         }
         //     ]
         // }
-    }));
-}));
+    });
+});
 // Static Resource Serving
-app.use("/static/so", express_1.default.static((0, getRootPath_1.getRootPath)("workers/so_decompiler/output")));
-app.use("/static/apk", express_1.default.static((0, getRootPath_1.getRootPath)("workers/jadx_decompile/output")));
+app.use("/static/so", express.static(getRootPath("workers/so_decompiler/output")));
+app.use("/static/apk", express.static(getRootPath("workers/jadx_decompile/output")));
 app.listen(PORT, () => {
     console.log(`Server Running on http://localhost:${PORT}`);
 });

@@ -82,15 +82,18 @@ class DemoModePanelState {
         reaction(
             () => GLOBAL_STATE.adb,
             async (device) => {
-                if (device) {
-                    runInAction(() => (this.demoMode = new DemoMode(device)));
-                    const allowed = await this.demoMode!.getAllowed();
-                    runInAction(() => (this.allowed = allowed));
-                    if (allowed) {
-                        const enabled = await this.demoMode!.getEnabled();
-                        runInAction(() => (this.enabled = enabled));
+                try {
+                    if (device) {
+                        runInAction(() => (this.demoMode = new DemoMode(device)));
+                        const allowed = await this.demoMode!.getAllowed();
+                        runInAction(() => (this.allowed = allowed));
+                        if (allowed) {
+                            const enabled = await this.demoMode!.getEnabled();
+                            runInAction(() => (this.enabled = enabled));
+                        }
                     }
-                } else {
+                } catch (e) {
+                    console.error(e);
                     this.demoMode = undefined;
                     this.allowed = false;
                     this.enabled = false;

@@ -23,7 +23,7 @@ interface ExecResult {
   output: string;
 }
 
-export function execCommand(command: string): Promise<ExecResult> {
+export default function execCommand(command: string): Promise<ExecResult> {
   return new Promise((resolve, reject) => {
     console.log(`Executing command: ${command}`);
     

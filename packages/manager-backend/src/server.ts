@@ -1,18 +1,16 @@
 import express from "express";
-import Adb from "@devicefarmer/adbkit";
-import { createProxy } from "./websockify";
+import adb from "@devicefarmer/adbkit";
+import { createProxy } from "./websockify.js";
 import cors from "cors";
 
-const { MANAGER_BACKEND_PORT, MANAGER_FRONTEND_URL } = require("config");
-
 const corsOptions = {
-    origin: MANAGER_FRONTEND_URL,
+    origin: `http://localhost:5001`,
     credentials: true,
     optionsSuccessStatus: 200,
 };
 
 const app = express();
-const client = Adb.createClient();
+const client = adb.createClient();
 app.use(express.json());
 app.use(cors(corsOptions));
 
@@ -252,7 +250,7 @@ app.post("/connect-adb-wifi", async (req, res): Promise<any> => {
 });
 
 // Start the server
-const PORT = MANAGER_BACKEND_PORT;
+const PORT = 3001;
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });

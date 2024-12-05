@@ -37,6 +37,7 @@
         "@yume-chan/struct": "^0.0.21",
         "@yume-chan/tabby-launcher": "workspace:1.0.197-nightly.1",
         "@yume-chan/undici-browser": "5.22.1-mod.7",
+        "adb-usb-transport": "workspace:^",
         "comlink": "^4.4.1",
         "fflate": "^0.8.2",
         "mobx": "^6.13.5",
@@ -44,7 +45,8 @@
         "next": "13.4.19",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
-        "webm-muxer": "^3.2.1"
+        "webm-muxer": "^3.2.1",
+        "ws": "^8.18.0"
     },
     "devDependencies": {
         "@mdx-js/loader": "^2.3.0",
@@ -54,11 +56,13 @@
         "@types/dom-webcodecs": "^0.1.13",
         "@types/node": "^20.17.6",
         "@types/react": "18.2.21",
+        "@types/ws": "^8.5.13",
         "@yume-chan/next-pwa": "5.6.0-mod.2",
         "eslint": "^8.57.1",
         "eslint-config-next": "13.4.19",
         "prettier": "^3.3.3",
         "source-map-loader": "^4.0.2",
+        "ts-loader": "^9.5.1",
         "typescript": "^5.6.3"
     }
 }

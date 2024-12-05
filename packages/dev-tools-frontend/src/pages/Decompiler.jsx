@@ -2,9 +2,9 @@ import { useState } from 'react';
 import axios from 'axios';
 import FileUploadBar from '../components/FileUploadBar';
 import CheckboxWithContent from '../components/CheckboxWithContent';
-const { DEV_TOOLS_BACKEND_URL } = require('config')
+import {config} from 'config';
 
-const BACKEND_URL = `${DEV_TOOLS_BACKEND_URL}/decompile_so`;
+const BACKEND_URL = `${config.DEV_TOOLS_BACKEND_URL}/decompile_so`;
 
 function Decompiler() {
   const [selectedFile, setSelectedFile] = useState(null);

@@ -3,11 +3,12 @@
 import { useState, useEffect } from "react";
 import { Loader2, RefreshCw } from "lucide-react";
 import { DeviceCard } from "@/components/device-card";
-const { MANAGER_BACKEND_PORT } = require("config");
+import {config} from "config";
+
 
 // import { AddDeviceForm } from '@/components/add-device-form'
 
-const PORT = MANAGER_BACKEND_PORT;
+const PORT = config.MANAGER_BACKEND_PORT;
 // Update this with your actual backend URL
 const BACKEND_URL = `http://localhost:${PORT}`;
 // Local app url

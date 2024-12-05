@@ -1,9 +1,9 @@
-import { Server as WebSocketServer } from 'ws';
+import { WebSocketServer } from 'ws';
 import * as net from 'net';
 import * as http from 'http';
 import * as https from 'https';
 import * as fs from 'fs';
-import * as mime from 'mime-types';
+// import * as mime from 'mime-types';
 
 interface ProxyOptions {
     sourcePort: number;

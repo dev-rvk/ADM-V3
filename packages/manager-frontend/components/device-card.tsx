@@ -10,7 +10,7 @@ import { Smartphone } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Loader2, XCircle } from "lucide-react";
 import { useState } from "react";
-const { MANAGER_BACKEND_PORT } = require("config");
+import {config} from "config";
 
 interface DeviceProps {
     id: string;
@@ -28,7 +28,7 @@ interface DeviceProps {
     onClickConnect: () => void;
 }
 
-const PORT = MANAGER_BACKEND_PORT;
+const PORT = config.MANAGER_BACKEND_PORT;
 
 export function DeviceCard({
     model,

@@ -1,4 +1,3 @@
-"use strict";
 /*
 This function reads all files from a given directory and its subdirectories recursively,
 returning their relative paths with respect to a base directory. It collects the paths
@@ -20,21 +19,16 @@ string[]
     An array of relative file paths with respect to the base directory. Each element in
     the array is a path to a file found within the directory tree.
 */
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.readNestedDir = readNestedDir;
-const fs_1 = __importDefault(require("fs"));
-const path_1 = __importDefault(require("path"));
-function readNestedDir(dir, baseDir) {
+import fs from 'fs';
+import path from 'path';
+export default function readNestedDir(dir, baseDir) {
     const files = [];
     const readDirRecursive = (currentDir) => {
-        const items = fs_1.default.readdirSync(currentDir);
+        const items = fs.readdirSync(currentDir);
         items.forEach(item => {
-            const fullPath = path_1.default.join(currentDir, item);
-            const relativePath = path_1.default.relative(baseDir, fullPath);
-            const stat = fs_1.default.statSync(fullPath);
+            const fullPath = path.join(currentDir, item);
+            const relativePath = path.relative(baseDir, fullPath);
+            const stat = fs.statSync(fullPath);
             if (stat.isDirectory()) {
                 readDirRecursive(fullPath);
             }

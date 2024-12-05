@@ -275,7 +275,6 @@ class FileManagerState {
                 const bSortKey = b[this.sortKey]!;
 
                 if (aSortKey === bSortKey) {
-                    // use name as tie breaker
                     result = compareCaseInsensitively(a.name!, b.name!);
                 } else if (typeof aSortKey === "string") {
                     result = compareCaseInsensitively(

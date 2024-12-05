@@ -38,18 +38,26 @@ module.exports = pipe(
             basePath,
         },
         webpack(config) {
-            config.module.rules.push({
-                test: /.*\.m?js$/,
-                // disable these modules because they generate a lot of warnings about
-                // non existing source maps
-                // we cannot filter these warnings via config.stats.warningsFilter
-                // because Next.js doesn't allow it
-                // https://github.com/vercel/next.js/pull/7550#issuecomment-512861158
-                // https://github.com/vercel/next.js/issues/12861
-                exclude: [/next/],
-                use: ["source-map-loader"],
-                enforce: "pre",
-            });
+            config.module.rules.push(
+                {
+                    test: /\.tsx?$/, // Matches .ts and .tsx files
+                    exclude: /node_modules/, // Excludes dependencies
+                    use: [
+                        {
+                            loader: "ts-loader",
+                            options: {
+                                transpileOnly: true, // Improves build speed by skipping type checking
+                            },
+                        },
+                    ],
+                },
+                {
+                    test: /.*\.m?js$/,
+                    exclude: [/next/],
+                    use: ["source-map-loader"],
+                    enforce: "pre",
+                }
+            );
 
             return config;
         },

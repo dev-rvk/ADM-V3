@@ -105,7 +105,7 @@ function createProxy(options) {
     }
     console.log(`Proxying from port ${sourcePort} to ${targetHost}:${targetPort}`);
     webServer.listen(sourcePort, () => {
-        const wsServer = new ws_1.Server({ server: webServer });
+        const wsServer = new ws_1.WebSocketServer({ server: webServer });
         wsServer.on('connection', new_client);
     });
     return webServer;
